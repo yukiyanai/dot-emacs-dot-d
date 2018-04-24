@@ -1,0 +1,7 @@
+echo $PATH
+echo $PATH
+alias la 'ls -A'
+alias ll 'ls -alF'
+alias l 'ls -CF'
+alias rm 'rm -i'
+brew install aspell
