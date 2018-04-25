@@ -5,3 +5,12 @@ alias ll 'ls -alF'
 alias l 'ls -CF'
 alias rm 'rm -i'
 brew install aspell
+cd .emacs.d/
+la
+cd .cask
+la
+cd 25.3
+la
+cd elpa
+la
+cd

@@ -134,6 +134,51 @@
           (lambda ()
             (flymake-mode t)))
 
+
+;============================
+;; YaTeX setting
+;;============================
+(add-to-list 'load-path "~/.emacs.d/.cask/25.3/elpa/yatex-20180223.2345")
+(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
+
+(setq auto-mode-alist
+      (append '(("\\.tex$" . yatex-mode)
+                ("\\.ltx$" . yatex-mode)
+                ("\\.cls$" . yatex-mode)
+                ("\\.sty$" . yatex-mode)
+                ("\\.clo$" . yatex-mode)
+                ("\\.bbl$" . yatex-mode)) auto-mode-alist))
+
+(with-eval-after-load 'yatex
+  (setq YaTeX-inhibit-prefix-letter t)
+  (setq YaTeX-kanji-code nil)
+  (setq YaTeX-use-LaTeX2e t)
+  (setq YaTeX-use-AMS-LaTeX t)
+  (setq YaTeX-dvi2-command-ext-alist
+        '(("Preview\\|TeXShop\\|TeXworks\\|Skim\\|mupdf\\|xpdf\\|Firefox\\|Adobe" . ".pdf")))
+  (setq tex-command "/Library/TeX/texbin/ptex2pdf -l -ot '-synctex=1'")
+  (setq bibtex-command (cond ((string-match "uplatex\\|-u" tex-command) "/Library/TeX/texbin/upbibtex")
+                             ((string-match "platex" tex-command) "/Library/TeX/texbin/pbibtex")
+                             ((string-match "lualatex\\|luajitlatex\\|xelatex" tex-command) "/Library/TeX/texbin/bibtexu")
+                             ((string-match "pdflatex\\|latex" tex-command) "/Library/TeX/texbin/bibtex")
+                             (t "/Library/TeX/texbin/pbibtex")))
+  (setq makeindex-command (cond ((string-match "uplatex\\|-u" tex-command) "/Library/TeX/texbin/mendex")
+                                ((string-match "platex" tex-command) "/Library/TeX/texbin/mendex")
+                                ((string-match "lualatex\\|luajitlatex\\|xelatex" tex-command) "/Library/TeX/texbin/texindy")
+                                ((string-match "pdflatex\\|latex" tex-command) "/Library/TeX/texbin/makeindex")
+                                (t "/Library/TeX/texbin/mendex")))
+  ;; (setq dvi2-command "/usr/bin/open -a Preview")
+  (setq dvi2-command "/usr/bin/open -a Skim")
+  (setq dviprint-command-format "/usr/bin/open -a \"Adobe Acrobat\" `echo %s | sed -e \"s/\\.[^.]*$/\\.pdf/\"`")
+  (auto-fill-mode -1)
+  (reftex-mode 1))
+(defvar YaTeX-dvi2-command-ext-alist
+  '(("[agx]dvi\\|dviout\\|emacsclient" . ".dvi")
+   ("ghostview\\|gv" . ".ps")
+   ("acroread\\|pdf\\|Preview\\|TeXShop\\|Skim\\|evince\\|apvlv" . ".pdf")))
+
+
+
 ;=======================
 ;; python-mode
 ;;=======================
@@ -248,4 +293,5 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (setq ns-command-modifier (quote meta))
 ;; use option keys as super keys
 (setq ns-alternate-modifier (quote super))
+
 
