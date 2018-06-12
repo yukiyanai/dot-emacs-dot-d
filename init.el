@@ -138,7 +138,7 @@
 ;============================
 ;; YaTeX setting
 ;;============================
-(add-to-list 'load-path "~/.emacs.d/.cask/25.3/elpa/yatex-20180223.2345")
+(add-to-list 'load-path "~/.emacs.d/.cask/26.1/elpa/yatex-20180601.2357")
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
 
 (setq auto-mode-alist
@@ -225,6 +225,7 @@
 ;;===============================================
 ;; Emacs Speaks Statistics (ESS)  settings 
 ;;===============================================
+(add-to-list 'load-path "~/.emacs.d/.cask/26.1/elpa/ess-20180524.1000")
 ;(require 'ess-site)
 ;(setq ess-askfor-ess-directory nil)
 (setq ess-directory "~/")
@@ -295,3 +296,15 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (setq ns-alternate-modifier (quote super))
 
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages (quote (package-build shut-up epl git commander f dash s))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
