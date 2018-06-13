@@ -14,3 +14,19 @@ la
 cd elpa
 la
 cd
+cd
+cd .emacs.d/.cask/
+la
+cd 26.1
+la
+cd elpa/
+la
+cd .cask
+la
+cd 26.1/elpa
+la
+cd .cask/26.1/elpa/
+la
+la
+cd ~/.emacs.d/.cask/26.1/elpa/
+la

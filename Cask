@@ -29,6 +29,7 @@
 (depends-on "yasnippet")
 
 ;; Add packages
+(depends-on "ess")
 (depends-on "auto-complete")
 (depends-on "helm")
 (depends-on "ctable")
