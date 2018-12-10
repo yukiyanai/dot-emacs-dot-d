@@ -10,9 +10,13 @@
 ;;             2018-06-13 YY
 ;;             2018-12-10 YY
 ;; ===================================
-;(package-initialize)
 
-(require 'cask)
+(require 'cask "/usr/local/opt/cask/cask.el") ; for Mac
+;; For Ubuntu
+;(when (or (require 'cask "~/.cask/cask.el" t)
+;          (require 'cask nil t))
+;  (cask initialize))
+
 
 ;; load environment value
 (load-file (expand-file-name "~/.emacs.d/shellenv.el"))
