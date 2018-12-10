@@ -8,6 +8,7 @@
 ;;             2017-07-11 YY
 ;;             2018-04-23 YY
 ;;             2018-06-13 YY
+;;             2018-12-10 YY
 ;; ===================================
 ;(package-initialize)
 
@@ -157,7 +158,7 @@
   (setq YaTeX-use-AMS-LaTeX t)
   (setq YaTeX-dvi2-command-ext-alist
         '(("Preview\\|TeXShop\\|TeXworks\\|Skim\\|mupdf\\|xpdf\\|Firefox\\|Adobe" . ".pdf")))
-  (setq tex-command "/Library/TeX/texbin/ptex2pdf -l -ot '-synctex=1'")
+  (setq tex-command "/Library/TeX/texbin/ptex2pdf -u -l -ot '-synctex=1'")
   (setq bibtex-command (cond ((string-match "uplatex\\|-u" tex-command) "/Library/TeX/texbin/upbibtex")
                              ((string-match "platex" tex-command) "/Library/TeX/texbin/pbibtex")
                              ((string-match "lualatex\\|luajitlatex\\|xelatex" tex-command) "/Library/TeX/texbin/bibtexu")
