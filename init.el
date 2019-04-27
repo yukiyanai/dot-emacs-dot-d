@@ -144,7 +144,7 @@
 ;============================
 ;; YaTeX setting
 ;;============================
-(add-to-list 'load-path "~/.emacs.d/.cask/26.1/elpa/yatex-20180601.2357")
+(add-to-list 'load-path "~/.emacs.d/.cask/26.1/elpa/yatex-20181107.3")
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
 
 (setq auto-mode-alist
@@ -287,6 +287,26 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     (setq exec-path (split-string path-from-shell path-separator))))
 
 (set-exec-path-from-shell-PATH)
+
+
+
+
+;;===================
+;; php-mode-hook
+;;===================
+(add-hook 'php-mode-hook
+          (lambda ()
+            (require 'php-completion)
+            (php-completion-mode t)
+            (define-key php-mode-map (kbd "C-o") 'phpcmp-complete)
+            (make-local-variable 'ac-sources)
+            (setq ac-sources '(
+                               ac-source-words-in-same-mode-buffers
+                               ac-source-php-completion
+                               ac-source-filename
+                               ))))
+
+
 
 ;; FONT SETTINGS
 (set-face-attribute 'default nil :family "Menlo" :height 140)

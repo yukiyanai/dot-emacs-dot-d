@@ -50,6 +50,11 @@
 (depends-on "elscreen")
 (depends-on "polymode")
 (depends-on "color-theme")
+(depends-on "php-mode")
+(depends-on "ac-php")
+(depends-on "helm-gtags")
+(depends-on "flycheck")
+
 
 
 ;; Add packages on GitHub
