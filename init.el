@@ -144,7 +144,7 @@
 ;============================
 ;; YaTeX setting
 ;;============================
-(add-to-list 'load-path "~/.emacs.d/.cask/26.1/elpa/yatex-20181107.3")
+(add-to-list 'load-path "~/.emacs.d/.cask/26.2/elpa/yatex-20190406.1610")
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
 
 (setq auto-mode-alist
@@ -188,13 +188,14 @@
 ;=======================
 ;; python-mode
 ;;=======================
-(setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
+(add-to-list 'load-path "~/.emacs.d/.cask/26.2/elpa/python-mode-20190313.1109")
+(autoload 'python-mode "python-mode" "Python editing mode" t)
+(setq auto-mode-alist
+      (append '(("\\.py$" . python-mode)) auto-mode-alist))
 (setq interpreter-mode-alist (cons '("python" . python-mode)
                                    interpreter-mode-alist))
-(autoload 'python-mode "python-mode" "Python editing mode." t)
 (setq ipython-command "/Users/yuki/.pyenv/shims/ipython")
 ;(require 'ipython)
-
 (add-hook 'python-mode-hook
           (lambda ()
             (define-key python-mode-map (kbd "\C-m") 'newline-and-indent)
@@ -223,6 +224,7 @@
 ;;=====================
 ;; markdown-mode
 ;;=====================
+(add-to-list 'load-path "~/.emacs.d/.cask/26.2/elpa/markdown-mode-20190305.319")
 (autoload 'markdown-mode "markdown-mode"
   "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
@@ -294,17 +296,21 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 ;;===================
 ;; php-mode-hook
 ;;===================
+(add-to-list 'load-path "~/.emacs.d/.cask/26.2/elpa/php-mode-20190418.1615")
+(autoload 'php-mode "php-mode" "PHP mode" t)
+(setq auto-mode-alist
+      (append '(("\\.php$" . php-mode)) auto-mode-alist))
+
+(require 'cl)
 (add-hook 'php-mode-hook
-          (lambda ()
-            (require 'php-completion)
-            (php-completion-mode t)
-            (define-key php-mode-map (kbd "C-o") 'phpcmp-complete)
-            (make-local-variable 'ac-sources)
-            (setq ac-sources '(
-                               ac-source-words-in-same-mode-buffers
-                               ac-source-php-completion
-                               ac-source-filename
-                               ))))
+            '(lambda ()
+               (auto-complete-mode t)
+               (require 'ac-php)
+               (setq ac-sources '(ac-source-php ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
+               (yas-global-mode 1)
+               (define-key php-mode-map  (kbd "C-]") 'ac-php-find-symbol-at-point)   ;goto define
+               (define-key php-mode-map  (kbd "C-t") 'ac-php-location-stack-back   ) ;go back
+               ))
 
 
 

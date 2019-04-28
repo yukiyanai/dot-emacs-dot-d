@@ -34,7 +34,6 @@
 (depends-on "helm")
 (depends-on "ctable")
 (depends-on "yatex")
-(depends-on "css")
 (depends-on "python-mode")
 (depends-on "markdown-mode")
 (depends-on "stan-mode")
@@ -54,7 +53,9 @@
 (depends-on "ac-php")
 (depends-on "helm-gtags")
 (depends-on "flycheck")
-
+(depends-on "web-mode")
+;;(depends-on "php-completion")
+;;(depends-on "css")
 
 
 ;; Add packages on GitHub
