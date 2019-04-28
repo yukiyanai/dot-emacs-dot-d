@@ -294,23 +294,44 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 
 ;;===================
-;; php-mode-hook
+;; web-mode
 ;;===================
-(add-to-list 'load-path "~/.emacs.d/.cask/26.2/elpa/php-mode-20190418.1615")
-(autoload 'php-mode "php-mode" "PHP mode" t)
+(add-to-list 'load-path "~/.emacs.d/.cask/26.2/elpa/web-mode-20190415.1950")
+(autoload 'web-mode "web-mode" "Web editing mode" t)
 (setq auto-mode-alist
-      (append '(("\\.php$" . php-mode)) auto-mode-alist))
+      (append '(("\\.phtml$" . web-mode)
+                ("\\.tpl$" . web-mode)
+                ("\\.php$" . web-mode)
+                ("\\.[gj]sp$" . web-mode)
+                ("\\.as[cp]x$" . web-mode)
+                ("\\.erb$" . web-mode)
+                ("\\.mustache$" . web-mode)
+                ("\\.gjhtml$" . web-mode)
+                ("\\.html?$" . web-mode)
+                ("\\.as[cp]x$" . web-mode)) auto-mode-alist))
+(setq web-mode-engines-alist
+'(("php"    . "\\.phtml\\'")
+  ("blade"  . "\\.blade\\.")))
 
-(require 'cl)
-(add-hook 'php-mode-hook
-            '(lambda ()
-               (auto-complete-mode t)
-               (require 'ac-php)
-               (setq ac-sources '(ac-source-php ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
-               (yas-global-mode 1)
-               (define-key php-mode-map  (kbd "C-]") 'ac-php-find-symbol-at-point)   ;goto define
-               (define-key php-mode-map  (kbd "C-t") 'ac-php-location-stack-back   ) ;go back
-               ))
+
+;;===================
+;; php-mode
+;;===================
+;(add-to-list 'load-path "~/.emacs.d/.cask/26.2/elpa/php-mode-20190418.1615")
+;(autoload 'php-mode "php-mode" "PHP mode" t)
+;(setq auto-mode-alist
+;      (append '(("\\.php$" . php-mode)) auto-mode-alist))
+;
+;(require 'cl)
+;(add-hook 'php-mode-hook
+;            '(lambda ()
+;               (auto-complete-mode t)
+;               (require 'ac-php)
+;               (setq ac-sources '(ac-source-php ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
+;               (yas-global-mode 1)
+;               (define-key php-mode-map  (kbd "C-]") 'ac-php-find-symbol-at-point)   ;goto define
+;               (define-key php-mode-map  (kbd "C-t") 'ac-php-location-stack-back   ) ;go back
+;              ))
 
 
 
